@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="strukPembelian" language="java" pageWidth="595" pageHeight="625" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b4cc0e71-0f34-4bec-9f25-484e1fa3a152">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="176"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="no_faktur" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\aryaa\\OneDrive\\Documents\\NetBeansProjects\\KedaiKopi\\src\\report\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT nama_menu, harga, jumlah FROM orderdetails WHERE no_faktur=$P{no_faktur};]]>
+	</queryString>
+	<field name="nama_menu" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jumlah" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="151" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="152" y="0" width="258" height="62" uuid="2706c39b-f42f-45a3-b343-f13e9a891bb4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="36" isBold="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Faktur Pembelian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="227" y="73" width="101" height="36" forecolor="#000000" uuid="b45f5358-51fb-4930-ae02-6356b475b66a"/>
+				<textElement>
+					<font fontName="Lucida Handwriting" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Kopi Kita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="119" width="249" height="20" uuid="5a0bf588-e4b3-41c0-aeea-4d19daafa5e3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jl. Sasaktinggi No.52, Ciputat, Tangerang Selatan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="150" width="555" height="1" uuid="21a45d0c-a1ff-4984-8081-38a5b418ef18"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="134" splitType="Stretch">
+			<subreport>
+				<reportElement x="1" y="11" width="554" height="109" uuid="0ab175af-0c1d-450c-99e9-f05672ef50c5"/>
+				<subreportParameter name="no_faktur">
+					<subreportParameterExpression><![CDATA[$P{no_faktur}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "detailStruk.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="8f3c8005-2381-45dd-a820-3b045075a9a0"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="185" height="15" forecolor="#000000" uuid="06534771-1ab4-4408-b177-254f9142b798"/>
+				<text><![CDATA[nama_menu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="185" y="0" width="185" height="15" forecolor="#000000" uuid="205da225-3d58-4ca0-b8cd-37cdb6db7865"/>
+				<text><![CDATA[harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="370" y="0" width="185" height="15" forecolor="#000000" uuid="cca190d1-febf-4521-ad8c-1c46aafbb205"/>
+				<text><![CDATA[jumlah]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="6f1a97c9-fa17-4cad-b62b-b03f42b361d3"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="185" height="15" uuid="5e031394-dc23-45af-993e-72c9a267847d"/>
+					<textFieldExpression><![CDATA[$F{nama_menu}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="185" y="0" width="185" height="15" uuid="8caad788-67ec-4caf-a3c9-a7fe49db50b2"/>
+					<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="370" y="0" width="185" height="15" uuid="562886c8-3c03-48f7-a144-8d21740d29a3"/>
+					<textFieldExpression><![CDATA[$F{jumlah}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<summary>
+		<band height="119" splitType="Stretch">
+			<subreport>
+				<reportElement x="1" y="28" width="554" height="80" uuid="c59a0a57-4882-4832-acb1-c17180187973"/>
+				<subreportParameter name="no_faktur">
+					<subreportParameterExpression><![CDATA[$P{no_faktur}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pembayaranStruk.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>
